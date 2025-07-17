@@ -1,0 +1,16 @@
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+}
+
+/* Custom styles for the DataTable header to make it more colorful */
+.orders-datatable .p-datatable-thead > tr > th {
+  background: #6366f1; /* Primary color from lara-light-indigo */
+  color: #ffffff;
+  border-bottom-width: 0;
+}
+
+/* Override hover color on header */
+.orders-datatable .p-datatable-thead > tr > th:hover {
+    background: #4f46e5; /* A slightly darker shade for hover */
+}
