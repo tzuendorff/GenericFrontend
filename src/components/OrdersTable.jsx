@@ -44,9 +44,8 @@ const OrdersTable = () => {
   }
 
   const approvedBodyTemplate = (rowData) => {
-    return <Chip label={rowData.approved ? "Yes" : "No"} className={rowData.approved ? "p-chip-success" : "p-chip-danger"} />;
-  };
-
+    return <Chip label={rowData.approved ? "Yes" : "No"} style={{backgroundColor: rowData.approved ? "var(--blue-200)" : "var(--red-200)"}} />;
+  }
   return (
     <div className="card m-4">
       <h1 className="text-3xl font-bold text-center mb-4">Customer Orders</h1>
