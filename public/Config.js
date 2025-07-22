@@ -4,6 +4,6 @@
 // However, putting them into a public file like this, maked react read the public file instead,
 // allowing you to change the API URL without rebuilding the app.
 
-window.ENV = {
-  BACKEND_URL: 'http://localhost:8080/api'
+globalThis.ENV = {
+  "BACKEND_URL": 'http://localhost:8080/api'
 }

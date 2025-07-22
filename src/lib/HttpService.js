@@ -3,7 +3,7 @@ import axios from 'axios';
 // Using a relative URL for the API endpoint is a good practice.
 // It assumes your development server is configured to proxy API requests
 // to the backend server, avoiding CORS issues.
-const backendUrl = "http://localhost:8080/orders"
+const backendUrl = globalThis.ENV.BACKEND_URL;
 
 /**
  * Fetches the list of orders from the backend API.
