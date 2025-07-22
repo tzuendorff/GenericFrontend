@@ -3,8 +3,11 @@ import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import { defineConfig, globalIgnores } from 'eslint/config'
+import eslintPluginUnicorn from 'eslint-plugin-unicorn';
 
 export default defineConfig([
+  eslintPluginUnicorn.configs.recommended,
+
   globalIgnores(['dist']),
   {
     files: ['**/*.{js,jsx}'],
