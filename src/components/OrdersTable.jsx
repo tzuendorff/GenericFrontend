@@ -11,18 +11,18 @@ import "primeflex/primeflex.css";
 
 const OrdersTable = () => {
   // Use 'const' for state variables, as the reference to 'orders' won't change
-  const [orders, setOrders] = useState(null);
+  const [orders, setOrders] = useState();
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState();
 
   useEffect(() => {
     const loadOrders = async () => {
       try {
         const fetchedOrders = await fetchOrders();
         setOrders(fetchedOrders);
-      } catch (err) {
+      } catch (error_) {
         setError("There was an error fetching the orders.");
-        console.error("Error fetching data: ", err);
+        console.error("Error fetching data: " + error_);
       } finally {
         setLoading(false);
       }

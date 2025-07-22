@@ -1,11 +1,7 @@
-import OrdersTable from './components/OrdersTable';
+import OrdersTable from "./components/OrdersTable";
 
 function App() {
-
-
-  return (
-      <OrdersTable />
-  );
+  return <OrdersTable />;
 }
 
-export default App
+export default App;
