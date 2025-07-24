@@ -3,8 +3,9 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Chip } from "primereact/chip";
 import { ProgressSpinner } from "primereact/progressspinner";
+import { Button } from "primereact/button";
 
-import { fetchOrders } from "../lib/HttpService"; // Import the fetchOrders function
+import { fetchOrders, deleteOrder } from "../lib/HttpService"; // Import the fetchOrders function
 import "./OrdersTable.css";
 import "primereact/resources/primereact.min.css";
 import "primeflex/primeflex.css";
@@ -30,6 +31,21 @@ const OrdersTable = () => {
     loadOrders();
   }, []);
 
+  const onClickDeleteOrder = async (orderId) => {
+      try {
+        await deleteOrder(orderId);
+        console.log(orderId)
+        
+        setOrders(orders.filter((order) => order.id !== orderId));
+        
+      } catch (error_) {
+        setError("There was an error fetching the orders.");
+        console.error("Error fetching data: " + error_);
+      } finally {
+        setLoading(false);
+      }
+  }
+
   if (loading) {
     return (
       <div className="flex flex-column justify-content-center align-items-center min-h-screen">
@@ -46,6 +62,11 @@ const OrdersTable = () => {
   const approvedBodyTemplate = (rowData) => {
     return <Chip label={rowData.approved ? "Yes" : "No"} style={{backgroundColor: rowData.approved ? "var(--blue-200)" : "var(--red-200)"}} />;
   }
+
+  const deleteButton = (rowData) => {
+    return <Button label="Delete" severity="danger" onClick={() => onClickDeleteOrder(rowData.id)}/>
+  }
+
   return (
     <div className="card m-4">
       <h1 className="text-3xl font-bold text-center mb-4">Customer Orders</h1>
@@ -55,6 +76,7 @@ const OrdersTable = () => {
           <Column field="customerFirstName" header="First Name" />
           <Column field="customerLastName" header="Last Name" />
           <Column field="approved" header="Approved" body={approvedBodyTemplate} />
+          <Column header="Delete" body={deleteButton}/>
         </DataTable>
       ) : (
         <div className="text-center">No orders found.</div>
