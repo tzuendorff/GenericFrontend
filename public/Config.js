@@ -5,5 +5,6 @@
 // allowing you to change the API URL without rebuilding the app.
 
 globalThis.ENV = {
-  "BACKEND_URL": 'http://localhost:8080/api'
+  "BACKEND_BASE_URL": 'https://localhost:8081',
+  "BACKEND_URL_PATH": 'orders'
 }

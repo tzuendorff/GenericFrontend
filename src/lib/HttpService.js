@@ -1,23 +1,54 @@
-import axios from 'axios';
+import axios from "axios";
 
-// Using a relative URL for the API endpoint is a good practice.
-// It assumes your development server is configured to proxy API requests
-// to the backend server, avoiding CORS issues.
-const backendUrl = globalThis.ENV.BACKEND_URL;
+const backendUrl = `${globalThis.ENV.BACKEND_BASE_URL}/${globalThis.ENV.BACKEND_URL_PATH}`;
 
-/**
- * Fetches the list of orders from the backend API.
- *
- * @returns {Promise<Array>} A promise that resolves with an array of order objects.
- * @throws {Error} An error is thrown if the API call fails.
- */
-export const fetchOrders = async () => {
-  const response = await axios.get(backendUrl);
-  // `axios` automatically parses the JSON and places the result in the `data` property.
-  return response.data;
+export const createOrder = async (order) => {
+  return axios
+    .post(backendUrl, {
+      order,
+    })
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error("Failed to create orders:", error);
+      throw new Error("Failed to create orders. Please try again later.");
+    });
 };
 
+export const fetchOrders = async () => {
+  return axios
+    .get(backendUrl)
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error("Failed to fetch orders:", error);
+      throw new Error("Failed to fetch orders. Please try again later.");
+    });
+};
 
+export const updateOrder = async (order) => {
+  return axios
+    .put(backendUrl, {
+      order,
+    })
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error("Failed to update orders:", error);
+      throw new Error("Failed to update orders. Please try again later.");
+    });
+};
+
+export const deleteOrder = async (orderId) => {
+  return axios
+    .delete(backendUrl, {
+      params: {
+        orderId: orderId,
+      },
+    })
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error("Failed to update orders:", error);
+      throw new Error("Failed to update orders. Please try again later.");
+    });
+};
 // Mocks the fetchOrders function for testing purposes
 // export const fetchOrders = async () => {
 //   const mockOrders = [
@@ -31,7 +62,7 @@ export const fetchOrders = async () => {
 //   // Wrap the setTimeout logic in a Promise
 //   return new Promise((resolve) => {
 //     setTimeout(() => {
-//       resolve(mockOrders); 
-//     }, 2000); 
+//       resolve(mockOrders);
+//     }, 2000);
 //   });
 // };
