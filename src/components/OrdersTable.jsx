@@ -72,10 +72,10 @@ const OrdersTable = () => {
       <h1 className="text-3xl font-bold text-center mb-4">Customer Orders</h1>
       {orders && orders.length > 0 ? (
         <DataTable value={orders} stripedRows className="orders-datatable">
-          <Column field="id" header="Order ID" />
-          <Column field="customerFirstName" header="First Name" />
-          <Column field="customerLastName" header="Last Name" />
-          <Column field="approved" header="Approved" body={approvedBodyTemplate} />
+          <Column sortable field="id" header="Order ID" />
+          <Column sortable field="customerFirstName" header="First Name" />
+          <Column sortable field="customerLastName" header="Last Name" />
+          <Column sortable field="approved" header="Approved" body={approvedBodyTemplate} />
           <Column header="Delete" body={deleteButton}/>
         </DataTable>
       ) : (
