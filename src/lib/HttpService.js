@@ -26,9 +26,9 @@ export const fetchOrders = async () => {
 
 export const updateOrder = async (order) => {
   return axios
-    .put(backendUrl, {
+    .put(backendUrl, 
       order,
-    })
+    )
     .then((response) => response.data)
     .catch((error) => {
       console.error("Failed to update orders:", error);
